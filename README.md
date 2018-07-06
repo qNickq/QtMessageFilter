@@ -1,0 +1,2 @@
+# QtMessageFilter
+qNickq and zanovru
