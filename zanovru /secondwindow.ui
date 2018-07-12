@@ -14,8 +14,12 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="2">
-    <widget class="QTableWidget" name="tableWidget"/>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="text">
+      <string>Убрать все</string>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0">
     <widget class="QPushButton" name="pushButton">
@@ -24,12 +28,15 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="pushButton_2">
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pushButton_accept">
      <property name="text">
-      <string>Убрать все</string>
+      <string>Применить</string>
      </property>
     </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QTableWidget" name="tableWidget"/>
    </item>
   </layout>
  </widget>

@@ -3,11 +3,22 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include <secondwindow.h>
+//#include "secondwindow.h"
+#include <set>
+#include <string>
 
 namespace Ui {
 class MainWindow;
 }
+
+enum class MyTypes
+{
+  Error,
+  Info,
+  Warning,
+  Message,
+  Putin
+};
 
 class MainWindow : public QMainWindow
 {

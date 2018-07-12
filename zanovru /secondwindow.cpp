@@ -4,6 +4,9 @@
 #include <QTableWidgetItem>
 #include <QCheckBox>
 #include <QAbstractItemView>
+#include <set>
+#include "mainwindow.h"
+#include <QMessageBox>
 
 
 SecondWindow::SecondWindow(QWidget *parent) :
@@ -11,9 +14,7 @@ SecondWindow::SecondWindow(QWidget *parent) :
     ui(new Ui::SecondWindow)
 {
     ui->setupUi(this);
-    createTable();
-    ui->tableWidget->resizeColumnsToContents();
- }
+}
 
 
 SecondWindow::~SecondWindow()
@@ -41,18 +42,122 @@ void SecondWindow::on_pushButton_clicked()
 
 void SecondWindow::createTable()
 {
-    ui->tableWidget->setRowCount(5);
+    ui->tableWidget->setRowCount(getAll().size());
     ui->tableWidget->setColumnCount(3);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Чекбокс" << "Название" << "Формуляр");
-    for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    std::set<MyTypes>::iterator it = getAll().begin();
+    for(int i = 0; it != getAll().end(); i++, it++)
     {
+        QString type = getType(*it);
+        QTableWidgetItem *str = new QTableWidgetItem;
+        str->setText(type);
+        ui->tableWidget->setItem(i,1,str);
+        QString desc = getDescription(*it);
+        QTableWidgetItem *str1 = new QTableWidgetItem;
+        str1->setText(desc);
+        ui->tableWidget->setItem(i,2,str1);
         QTableWidgetItem *item = new QTableWidgetItem();
         item->data(Qt::CheckStateRole);
-        item->setCheckState(Qt::Checked);
+        if (getEdited().count(*it))
+        {
+           item->setCheckState(Qt::Checked);
+        }
+        else
+        {
+           item->setCheckState(Qt::Unchecked);
+        }
         ui->tableWidget->setItem(i,0,item);
         ui->tableWidget->item(i,0)->setText(QString::number(i+1));
-        QHeaderView *VertHeader = ui->tableWidget->verticalHeader();
-        VertHeader->setVisible(false);
+        ui->tableWidget->verticalHeader()->setVisible(false);
+    }
+    ui->tableWidget->resizeColumnsToContents();
+
+
+}
+
+
+void SecondWindow::on_pushButton_accept_clicked()
+{
+    std::set<MyTypes>::iterator it = getAll().begin();
+    for(int i = 0; it != getAll().end(); i++, it++)
+    {
+        if(ui->tableWidget->item(i,0)->checkState() == Qt::Checked)
+        {
+            getEdited().insert(*it);
+        }
+        else
+        {
+            getEdited().erase(*it);
+        }
+    }
+    hide();
+}
+
+void SecondWindow::setData(std::string& head, std::set<MyTypes>& all, std::set<MyTypes>& edited)
+{
+    header1 = head;
+    FullSet1 = &all;
+    EditedSet1 = &edited;
+}
+
+std::string& SecondWindow::getHeader()
+{
+    return header1;
+}
+
+std::set<MyTypes>& SecondWindow::getAll()
+{
+    return *FullSet1;
+}
+
+std::set<MyTypes>& SecondWindow::getEdited()
+{
+    return *EditedSet1;
+}
+QString SecondWindow::getType(MyTypes type)
+{
+    switch(type)
+    {
+    case MyTypes::Error:
+        return "Error";
+        break;
+    case MyTypes::Info:
+        return "Info";
+        break;
+    case MyTypes::Warning:
+        return "Warning";
+        break;
+    case MyTypes::Message:
+        return "Message";
+        break;
+    case MyTypes::Putin:
+        return "Putin";
+        break;
+    }
+}
+
+QString SecondWindow::getDescription(MyTypes type)
+{
+    switch(type)
+    {
+    case MyTypes::Error:
+        return "This is error";
+        break;
+    case MyTypes::Info:
+        return "This is info";
+        break;
+    case MyTypes::Warning:
+        return "This is warning";
+        break;
+    case MyTypes::Message:
+        return "Hello!";
+        break;
+    case MyTypes::Putin:
+        return "Если бы у бабушки были...";
+        break;
     }
 }
 

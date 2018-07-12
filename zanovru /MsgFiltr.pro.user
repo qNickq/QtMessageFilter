@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.6.2, 2018-07-11T23:39:53. -->
+<!-- Written by QtCreator 4.6.2, 2018-07-12T01:20:23. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -305,8 +305,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">MsgFiltr</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">MsgFiltr2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/vitalyruzanov/Desktop/QtMessageFilter/Vital9/MsgFiltr.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/vitalyruzanov/Desktop/QtMessageFilter/zanovru /MsgFiltr.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">MsgFiltr.pro</value>
