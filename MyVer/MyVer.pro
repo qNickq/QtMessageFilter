@@ -26,14 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    table.cpp
+    table.cpp \
+    search.cpp
 
 HEADERS += \
         mainwindow.h \
-    table.h
+    table.h \
+    search.h
 
 FORMS += \
         mainwindow.ui \
-    table.ui
+    table.ui \
+    search.ui
 
 DISTFILES +=

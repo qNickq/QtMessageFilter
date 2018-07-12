@@ -3,9 +3,31 @@
 
 #include <QMainWindow>
 #include <set>
+#include <map>
+
+using namespace std;
+
 namespace Ui {
 class MainWindow;
 }
+
+struct TMessage
+{
+    int msgNum;
+    double msgTime;
+    int msgType;
+    string text;
+};
+
+
+enum class allTypes
+{
+    Error,
+    Info,
+    no,
+    A,
+    B
+};
 
 class MainWindow : public QMainWindow
 {
@@ -14,22 +36,16 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
-    void setData(QString& head, std::set<QString>& all, std::set<QString>& user);
-
-    QString& getHeader();
-    std::set<QString>& getAllSet();
-    std::set<QString>& getUserSet();
-
     ~MainWindow();
 
 private slots:
     void on_mainButton_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
-    QString *header;
-    std::set<QString>*all_data;
-    std::set<QString>*user_data;
+
 };
 
 #endif // MAINWINDOW_H
