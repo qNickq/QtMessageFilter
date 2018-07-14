@@ -161,3 +161,5 @@ QString SecondWindow::getDescription(MyTypes type)
     }
 }
 
+
+

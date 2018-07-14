@@ -34,8 +34,8 @@ private slots:
 private:
     Ui::SecondWindow *ui;
     std::string header1;
-    std::set<MyTypes>*FullSet1 = new std::set<MyTypes>;
-    std::set<MyTypes>*EditedSet1 = new std::set<MyTypes>;
+    std::set<MyTypes>*FullSet1;
+    std::set<MyTypes>*EditedSet1;
 };
 
 #endif // SECONDWINDOW_H

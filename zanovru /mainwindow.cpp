@@ -3,16 +3,22 @@
 #include <QTableWidget>
 #include <QString>
 #include "secondwindow.h"
+#include "search.h"
+
 
 std::set<MyTypes>*FullSet = new std::set<MyTypes>;
 std::set<MyTypes>*EditedSet = new std::set<MyTypes>;
 std::string header;
+std::map<int, TMessage*> *messages = new std::map<int, TMessage*>;
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    srand(time(NULL));
     FullSet->insert(MyTypes::Error);
     FullSet->insert(MyTypes::Info);
     FullSet->insert(MyTypes::Warning);
@@ -21,6 +27,16 @@ MainWindow::MainWindow(QWidget *parent) :
     EditedSet->insert(MyTypes::Info);
     EditedSet->insert(MyTypes::Putin);
     header = "My Table";
+    for(int i = 0; i < 3; ++i)
+    {
+        TMessage *msg = new TMessage;
+        QTime time = QTime::currentTime();
+        msg->msgNum = rand() % 100;
+        msg->msgType = rand() % 100;
+        msg->msgTime = time.hour()*60*60 + time.minute()*60 + time.second() + i;
+        msg->msgName = "Message = " + std::to_string(i);
+        (*messages)[i] = msg;
+    }
 }
 
 MainWindow::~MainWindow()
@@ -39,3 +55,12 @@ void MainWindow::on_pushButton_clicked()
 }
 
 
+
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    Search *wndw = new Search;
+    wndw->setMap(*messages);
+    wndw->show();
+}
