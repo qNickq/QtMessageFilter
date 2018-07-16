@@ -27,14 +27,17 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     secondwindow.cpp \
-    search.cpp
+    search.cpp \
+    accept.cpp
 
 HEADERS += \
         mainwindow.h \
     secondwindow.h \
-    search.h
+    search.h \
+    accept.h
 
 FORMS += \
         mainwindow.ui \
     secondwindow.ui \
-    search.ui
+    search.ui \
+    accept.ui

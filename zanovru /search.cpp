@@ -1,65 +1,21 @@
 #include "search.h"
 #include "ui_search.h"
+#include "mainwindow.h"
+#include "accept.h"
 
-std::map<int, TMessage*> newmsg;
+
+std::vector<int>idx;
+//std::vector<int>*p_idx=&idx;
+
+std::vector<int>::iterator it;
+//std::vector<int>::iterator *p_it=&it;
+int ch;
 
 Search::Search(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Search)
 {
     ui->setupUi(this);
-    if(ui->radioButton_num->isChecked())
-    {
-        newmsg.clear();
-        std::map<int, TMessage*>::iterator it = getMap().begin();
-        for(; it != getMap().end(); ++it)
-        {
-           if(it->second->msgNum == (ui->lineEdit->text()).toInt())
-           {
-               newmsg.insert(it->first,it->second);
-           }
-        }
-        std::map<int, TMessage*>::iterator iter = newmsg.begin();
-     }
-    if(ui->radioButton_time->isChecked())
-    {
-        newmsg.clear();
-        std::map<int, TMessage*>::iterator it = getMap().begin();
-        for(; it != getMap().end(); ++it)
-        {
-           if(it->second->msgTime == (ui->lineEdit->text()).toDouble())
-           {
-               newmsg.insert(it->first,it->second);
-           }
-        }
-        std::map<int, TMessage*>::iterator iter = newmsg.begin();
-     }
-    if(ui->radioButton_type->isChecked())
-    {
-        newmsg.clear();
-        std::map<int, TMessage*>::iterator it = getMap().begin();
-        for(; it != getMap().end(); ++it)
-        {
-           if(it->second->msgType == (ui->lineEdit->text()).toInt())
-           {
-               newmsg.insert(it->first,it->second);
-           }
-        }
-        std::map<int, TMessage*>::iterator iter = newmsg.begin();
-     }
-    if(ui->radioButton_num->isChecked())
-    {
-        newmsg.clear();
-        std::map<int, TMessage*>::iterator it = getMap().begin();
-        for(; it != getMap().end(); ++it)
-        {
-           if(it->second->msgNum == (ui->lineEdit->text()).toInt())
-           {
-               newmsg.insert(it->first,it->second);
-           }
-        }
-        std::map<int, TMessage*>::iterator iter = newmsg.begin();
-    }
 }
 
 
@@ -83,20 +39,129 @@ std::map<int, TMessage*>& Search::getMap()
 
 void Search::on_pushButton_next_clicked()
 {
-    std::map<int, TMessage*>::iterator it;
-    if(newmsg.size() > 0)
+    if( ch == 2 ) ++it;
+    if(idx.size() == 0)
     {
-       while(it != newmsg.end())
-       {
-           QMessageBox::information(this,"Title", QString::number(it->first));
-       }
+        fillVector();
+        it = idx.begin();
+    }
+    if(idx.size() > 0)
+    {
+        if(it != idx.end())
+        {
+           QMessageBox::information(this,"Title", QString::number(*it++));
+
+        }
+        else
+        {
+            Accept *window1 = new Accept();
+            window1->show();
+
+            //it = idx.begin();
+        }
     }
     else
     {
         QMessageBox::critical(this, "Title", "Поиск не дал результатов!");
     }
-    it++;
+
+    ch = 1;
 }
 
 
 
+
+
+
+void Search::on_pushButton_prev_clicked()
+{
+    if( ch == 1 ) --it;
+    if(idx.size() == 0)
+    {
+        fillVector();
+        it = idx.begin();
+    }
+    if(idx.size() > 0)
+    {
+        if(it != --idx.begin())
+        {
+           QMessageBox::information(this,"Title", QString::number(*it--));
+        }
+        else
+        {
+            Accept *window1 = new Accept();
+            //window1->setData(idx, it);
+            window1->show();
+            //it = idx.begin();
+        }
+
+    }
+    else
+    {
+        QMessageBox::critical(this, "Title", "Поиск не дал результатов!");
+    }
+
+
+    ch = 2;
+}
+
+
+void Search::fillVector()
+{
+    if(ui->radioButton_num->isChecked())
+    {
+        idx.clear();
+        it = idx.begin();
+        for(int i = 0; i < 3; ++i)
+        {
+            if((*msg)[i]->msgNum == (ui->lineEdit->text()).toInt())
+            {
+                idx.push_back(i);
+            }
+        }
+    }
+
+    if(ui->radioButton_time->isChecked())
+    {
+        idx.clear();
+        it = idx.begin();
+        for(int i = 0; i < 3; ++i)
+        {
+           if((*msg)[i]->msgTime == (ui->lineEdit->text()).toDouble())
+           {
+               idx.push_back(i);
+           }
+        }
+    }
+
+    if(ui->radioButton_type->isChecked())
+    {
+        idx.clear();
+        it = idx.begin();
+        for(int i = 0; i < 3; ++i)
+        {
+           if((*msg)[i]->msgType == (ui->lineEdit->text()).toInt())
+           {
+               idx.push_back(i);
+           }
+        }
+    }
+
+    if(ui->radioButton_text->isChecked())
+    {
+        idx.clear();
+        it = idx.begin();
+        for(int i = 0; i < 3; ++i)
+        {
+           if((*msg)[i]->msgName == (ui->lineEdit->text()).toStdString())
+           {
+               idx.push_back(i);
+           }
+        }
+    }
+}
+
+void Search::on_lineEdit_textChanged(const QString &arg1)
+{
+    idx.clear();
+}

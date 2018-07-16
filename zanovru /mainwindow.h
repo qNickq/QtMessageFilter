@@ -8,6 +8,7 @@
 #include <map>
 #include <cstdlib>
 #include <QTime>
+#include <vector>
 
 namespace Ui {
 class MainWindow;

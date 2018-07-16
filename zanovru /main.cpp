@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <iostream>
 #include "secondwindow.h"
+#include "search.h"
 
 int main(int argc, char *argv[])
 {
