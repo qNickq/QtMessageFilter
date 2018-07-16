@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         TMessage *msg = new TMessage;
         QTime time = QTime::currentTime();
-        msg->msgNum = i;
+        msg->msgNum = 666;
         msg->msgType = i;
         msg->msgTime = time.hour()*60*60 + time.minute()*60 + time.second() + i;
         msg->msgName = "Message=" + std::to_string(i);

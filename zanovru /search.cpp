@@ -1,7 +1,7 @@
 #include "search.h"
 #include "ui_search.h"
 #include "mainwindow.h"
-#include "accept.h"
+
 
 
 std::vector<int>idx;
@@ -54,10 +54,11 @@ void Search::on_pushButton_next_clicked()
         }
         else
         {
-            Accept *window1 = new Accept();
-            window1->show();
-
-            //it = idx.begin();
+           QMessageBox::StandardButton reply = QMessageBox::question(this, "Title", "Хотите начать поиск заново?",QMessageBox::Yes | QMessageBox::No);
+           if(reply == QMessageBox::Yes)
+           {
+                it = idx.begin();
+           }
         }
     }
     else
@@ -89,10 +90,11 @@ void Search::on_pushButton_prev_clicked()
         }
         else
         {
-            Accept *window1 = new Accept();
-            //window1->setData(idx, it);
-            window1->show();
-            //it = idx.begin();
+            QMessageBox::StandardButton reply = QMessageBox::question(this, "Title", "Хотите начать поиск заново?",QMessageBox::Yes | QMessageBox::No);
+            if(reply == QMessageBox::Yes)
+            {
+                 it = idx.begin();
+            }
         }
 
     }

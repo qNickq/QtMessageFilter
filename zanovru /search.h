@@ -4,7 +4,6 @@
 #include <QWidget>
 #include "mainwindow.h"
 #include <QMessageBox>
-#include "accept.h"
 
 namespace Ui {
 class Search;
