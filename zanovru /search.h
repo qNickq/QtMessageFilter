@@ -28,14 +28,6 @@ private slots:
 
     void on_pushButton_prev_clicked();
 
-//    void on_radioButton_num_clicked();
-
-//    void on_radioButton_time_clicked();
-
-//    void on_radioButton_type_clicked();
-
-//    void on_radioButton_text_clicked();
-
     void on_lineEdit_textChanged(const QString &arg1);
 
 private:

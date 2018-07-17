@@ -23,16 +23,16 @@ MainWindow::MainWindow(QWidget *parent) :
     FullSet->insert(MyTypes::Info);
     FullSet->insert(MyTypes::Warning);
     FullSet->insert(MyTypes::Message);
-    FullSet->insert(MyTypes::Putin);
+    FullSet->insert(MyTypes::Help);
     EditedSet->insert(MyTypes::Info);
-    EditedSet->insert(MyTypes::Putin);
+    EditedSet->insert(MyTypes::Help);
     header = "My Table";
-    for(int i = 0; i < 3; ++i)
+    for(int i = 0; i < 1000; ++i)
     {
         TMessage *msg = new TMessage;
         QTime time = QTime::currentTime();
-        msg->msgNum = 666;
-        msg->msgType = i;
+        msg->msgNum = rand() % 100;
+        msg->msgType = rand() % 100;
         msg->msgTime = time.hour()*60*60 + time.minute()*60 + time.second() + i;
         msg->msgName = "Message=" + std::to_string(i);
         (*messages)[i] = msg;
@@ -47,8 +47,9 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     SecondWindow *window = new SecondWindow;
-    window->setData(header, *FullSet, *EditedSet);
+    window->setData(*FullSet, *EditedSet);
     window->setModal(true);
+    window->setWindowTitle(QString::fromStdString(header));
     window->createTable();
     window->resize(window->sizeHint());
     window->show();

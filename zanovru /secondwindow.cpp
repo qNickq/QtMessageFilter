@@ -44,7 +44,7 @@ void SecondWindow::createTable()
 {
     ui->tableWidget->setRowCount(getAll().size());
     ui->tableWidget->setColumnCount(3);
-    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Чекбокс" << "Название" << "Формуляр");
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "№" << "Тип" << "Расшифровка");
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -96,16 +96,10 @@ void SecondWindow::on_pushButton_accept_clicked()
     hide();
 }
 
-void SecondWindow::setData(std::string& head, std::set<MyTypes>& all, std::set<MyTypes>& edited)
+void SecondWindow::setData(std::set<MyTypes>& all, std::set<MyTypes>& edited)
 {
-    header1 = head;
     FullSet1 = &all;
     EditedSet1 = &edited;
-}
-
-std::string& SecondWindow::getHeader()
-{
-    return header1;
 }
 
 std::set<MyTypes>& SecondWindow::getAll()
@@ -133,8 +127,8 @@ QString SecondWindow::getType(MyTypes type)
     case MyTypes::Message:
         return "Message";
         break;
-    case MyTypes::Putin:
-        return "Putin";
+    case MyTypes::Help:
+        return "Help";
         break;
     }
 }
@@ -153,10 +147,10 @@ QString SecondWindow::getDescription(MyTypes type)
         return "This is warning";
         break;
     case MyTypes::Message:
-        return "Hello!";
+        return "This is message";
         break;
-    case MyTypes::Putin:
-        return "Если бы у бабушки были...";
+    case MyTypes::Help:
+        return "This is help";
         break;
     }
 }

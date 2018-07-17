@@ -17,9 +17,8 @@ class SecondWindow : public QDialog
 public:
     explicit SecondWindow(QWidget *parent = 0);
     ~SecondWindow();
-    void setData(std::string& , std::set<MyTypes>& , std::set<MyTypes>&);
+    void setData(std::set<MyTypes>& , std::set<MyTypes>&);
     std::set<MyTypes>& getAll();
-    std::string& getHeader();
     std::set<MyTypes>& getEdited();
     void createTable();
     QString getType(MyTypes);

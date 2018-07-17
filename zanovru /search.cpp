@@ -5,10 +5,7 @@
 
 
 std::vector<int>idx;
-//std::vector<int>*p_idx=&idx;
-
 std::vector<int>::iterator it;
-//std::vector<int>::iterator *p_it=&it;
 int ch;
 
 Search::Search(QWidget *parent) :
@@ -49,7 +46,7 @@ void Search::on_pushButton_next_clicked()
     {
         if(it != idx.end())
         {
-           QMessageBox::information(this,"Title", QString::number(*it++));
+           QMessageBox::information(this,"Title","Ключ №" + QString::number(*it++));
 
         }
         else
@@ -86,7 +83,7 @@ void Search::on_pushButton_prev_clicked()
     {
         if(it != --idx.begin())
         {
-           QMessageBox::information(this,"Title", QString::number(*it--));
+           QMessageBox::information(this,"Title", "Ключ №" + QString::number(*it--));
         }
         else
         {
@@ -114,7 +111,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 3; ++i)
+        for(int i = 0; i < 1000; ++i)
         {
             if((*msg)[i]->msgNum == (ui->lineEdit->text()).toInt())
             {
@@ -127,7 +124,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 3; ++i)
+        for(int i = 0; i < 1000; ++i)
         {
            if((*msg)[i]->msgTime == (ui->lineEdit->text()).toDouble())
            {
@@ -140,7 +137,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 3; ++i)
+        for(int i = 0; i < 1000; ++i)
         {
            if((*msg)[i]->msgType == (ui->lineEdit->text()).toInt())
            {
@@ -153,7 +150,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 3; ++i)
+        for(int i = 0; i < 1000; ++i)
         {
            if((*msg)[i]->msgName == (ui->lineEdit->text()).toStdString())
            {

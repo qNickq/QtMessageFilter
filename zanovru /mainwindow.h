@@ -20,7 +20,7 @@ enum class MyTypes
   Info,
   Warning,
   Message,
-  Putin
+  Help
 };
 
 struct TMessage
