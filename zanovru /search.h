@@ -21,6 +21,7 @@ public:
     void setMap(std::map<int, TMessage*>&);
     std::map<int, TMessage*>& getMap();
     void fillVector();
+    std::vector<int>& getVector();
 
 
 private slots:
@@ -33,6 +34,7 @@ private slots:
 private:
     Ui::Search *ui;
     std::map<int, TMessage*> *msg;
+    std::vector<int>idx;
 };
 
 #endif // SEARCH_H

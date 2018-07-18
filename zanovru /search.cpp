@@ -4,7 +4,7 @@
 
 
 
-std::vector<int>idx;
+
 std::vector<int>::iterator it;
 int ch;
 
@@ -111,7 +111,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 1000; ++i)
+        for(size_t i = 0; i < msg->size(); ++i)
         {
             if((*msg)[i]->msgNum == (ui->lineEdit->text()).toInt())
             {
@@ -124,7 +124,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 1000; ++i)
+        for(size_t i = 0; i < msg->size(); ++i)
         {
            if((*msg)[i]->msgTime == (ui->lineEdit->text()).toDouble())
            {
@@ -137,7 +137,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 1000; ++i)
+        for(size_t i = 0; i < msg->size(); ++i)
         {
            if((*msg)[i]->msgType == (ui->lineEdit->text()).toInt())
            {
@@ -150,7 +150,7 @@ void Search::fillVector()
     {
         idx.clear();
         it = idx.begin();
-        for(int i = 0; i < 1000; ++i)
+        for(size_t i = 0; i < msg->size(); ++i)
         {
            if((*msg)[i]->msgName == (ui->lineEdit->text()).toStdString())
            {
@@ -163,4 +163,9 @@ void Search::fillVector()
 void Search::on_lineEdit_textChanged(const QString &arg1)
 {
     idx.clear();
+}
+
+std::vector<int>& Search::getVector()
+{
+    return idx;
 }
